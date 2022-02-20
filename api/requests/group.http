@@ -1,26 +1,62 @@
-GET http://localhost:9000/api/group/get/62119420ea382919810c8d1f HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTE5MDMyZmQ3Y2E4NjcyYmRhMzJlZiIsImlhdCI6MTY0NTMyMDk1NywiZXhwIjozMjkxMDAxOTE0LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.eNXRqiES3XLrVwIkh604YKd_51Gp83qLUWIVOB-CAf8
+GET http://localhost:9000/api/group/get/6212d3d29b44a0ff8b15f402 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+###
+
+GET http://localhost:9000/api/group/all HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+###
+
+GET http://localhost:9000/api/group/get-user-groups/6212baf5c9881ffe00efc151 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
 
 ###
 
 POST http://localhost:9000/api/group/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTE5MDMyZmQ3Y2E4NjcyYmRhMzJlZiIsImlhdCI6MTY0NTMyMDk1NywiZXhwIjozMjkxMDAxOTE0LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.eNXRqiES3XLrVwIkh604YKd_51Gp83qLUWIVOB-CAf8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
 
 {
     "name": "Grupa 123",
     "coverPhotoRef": "group/123",
-    "founder": "62119032fd7ca8672bda32ef"
+    "founder": "6212bad5c9881ffe00efc14d"
 }
 
 ###
 
 POST http://localhost:9000/api/group/join HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTE5MDMyZmQ3Y2E4NjcyYmRhMzJlZiIsImlhdCI6MTY0NTMyMDk1NywiZXhwIjozMjkxMDAxOTE0LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.eNXRqiES3XLrVwIkh604YKd_51Gp83qLUWIVOB-CAf8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
 
 {
-    "groupId": "62119032fd7ca8672bda32ef",
-    "memberId": "",
+    "groupId": "6212d3d29b44a0ff8b15f402",
+    "memberId": "6212baf5c9881ffe00efc151",
     "invitationCode": "123ABC"
+}
+
+###
+
+POST http://localhost:9000/api/group/add HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+
+{
+    "groupId": "6212d3d29b44a0ff8b15f402",
+    "memberEmail": "user3@travelr.com"
+}
+
+###
+
+POST http://localhost:9000/api/group/remove HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+
+{
+    "groupId": "6212d3d29b44a0ff8b15f402",
+    "memberId": "6212bbb8c9881ffe00efc155"
 }

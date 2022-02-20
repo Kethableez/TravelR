@@ -5,7 +5,7 @@ import bcryptjs from 'bcryptjs';
 import logging from '../config/logging';
 import User from '../models/schemas/user';
 import IUser from '../models/interfaces/user';
-import { head } from 'lodash';
+import { head, isEmpty } from 'lodash';
 import signJWT from '../functions/sign-jwt';
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -49,9 +49,47 @@ const createUser = (req: Request, res: Response, next: NextFunction) => {
     });
 };
 
-const editUser = (req: Request, res: Response, next: NextFunction) => {};
+const editUser = (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.params.userId;
+    const data = req.body;
 
-const deleteUser = (req: Request, res: Response, next: NextFunction) => {};
+    User.findByIdAndUpdate(userId, data)
+        .exec()
+        .then((user) => {
+            return res.status(200).json({
+                message: 'Data changed',
+                object: user
+            });
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+    // id!!!
+    // firstName: user.firstName,
+    // lastName: user.lastName,
+    // birthdate: user.birthdate,
+    // avatarRef: user.avatarRef,
+};
+
+const deleteUser = (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.params.userId;
+    User.findByIdAndDelete(userId)
+        .exec()
+        .then(() => {
+            return res.status(200).json({
+                message: 'Account removed'
+            });
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
 
 const login = (req: Request, res: Response, next: NextFunction) => {
     let { username, password } = req.body;
@@ -101,12 +139,65 @@ const login = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const getUser = (req: Request, res: Response, next: NextFunction) => {};
+const getUser = (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.params.userId;
 
-const getUsers = (req: Request, res: Response, next: NextFunction) => {};
+    User.findById(userId)
+        .exec()
+        .then((user) => {
+            return res.status(200).json(user);
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
 
-const checkUsername = (req: Request, res: Response, next: NextFunction) => {};
+const getUsers = (req: Request, res: Response, next: NextFunction) => {
+    User.find()
+        .exec()
+        .then((users) => {
+            return res.status(200).json(users);
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
 
-const checkEmail = (req: Request, res: Response, next: NextFunction) => {};
+// TODO
+const check = (req: Request, res: Response, next: NextFunction) => {
+    const selector = req.params.selector;
+    const value = req.params.value;
+    console.log(selector, value);
+    User.find()
+        .where(selector)
+        .equals(value)
+        .exec()
+        .then((users) => {
+            console.log(users);
+            if (isEmpty(users)) {
+                return res.status(200).json({
+                    available: true,
+                    selector
+                });
+            } else {
+                return res.status(400).json({
+                    available: false,
+                    selector
+                });
+            }
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
 
-export default { createUser, login };
+export default { createUser, editUser, deleteUser, login, getUser, getUsers, check };

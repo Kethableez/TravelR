@@ -51,13 +51,69 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const editGroup = (req: Request, res: Response, next: NextFunction) => {};
+const editGroup = (req: Request, res: Response, next: NextFunction) => {
+    const groupId = req.params.groupId;
+    const data = req.body;
 
-const deleteGroup = (req: Request, res: Response, next: NextFunction) => {};
+    Group.findByIdAndUpdate(groupId, data)
+        .exec()
+        .then(() => {
+            return res.status(200).json({ message: 'Data changed' });
+        })
+        .catch((error) => {
+            return res.status(500).json({ message: error.message, error });
+        });
+};
 
-const getGroup = (req: Request, res: Response, next: NextFunction) => {};
+const deleteGroup = (req: Request, res: Response, next: NextFunction) => {
+    const groupId = req.params.groupId;
 
-const getGoups = (req: Request, res: Response, next: NextFunction) => {
+    Group.findByIdAndDelete(groupId)
+        .exec()
+        .then(() => {
+            return res.status(200).json({
+                message: 'Group removed'
+            });
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
+
+const getGroup = (req: Request, res: Response, next: NextFunction) => {
+    const groupId = req.params.groupId;
+
+    Group.findById(groupId)
+        .exec()
+        .then((group) => {
+            return res.status(200).json(group);
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
+
+const getGroups = (req: Request, res: Response, next: NextFunction) => {
+    Group.find()
+        .exec()
+        .then((groups) => {
+            return res.status(200).json(groups);
+        })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
+};
+
+const getGroupsByUserId = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId;
 
     Group.find({
@@ -118,8 +174,70 @@ const joinToGroup = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const addToGroup = (req: Request, res: Response, next: NextFunction) => {};
+const addToGroup = async (req: Request, res: Response, next: NextFunction) => {
+    const { memberEmail, groupId } = req.body;
+    const newMember = await User.findOne({ email: memberEmail });
+    const group = await Group.findById(groupId);
 
-const removeFromGroup = (req: Request, res: Response, next: NextFunction) => {};
+    if (newMember && group) {
+        group.members.push({
+            _id: newMember._id,
+            firstName: newMember.firstName,
+            lastName: newMember.lastName,
+            avatarRef: newMember.avatarRef
+        });
 
-export default { createGroup, joinToGroup, getGoups };
+        group
+            .save()
+            .then((group) => {
+                return res.status(200).json({
+                    message: 'Joined',
+                    object: group
+                });
+            })
+            .catch((error) => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                });
+            });
+    } else {
+        return res.status(404).json({ message: 'Not found' });
+    }
+};
+
+const removeFromGroup = async (req: Request, res: Response, next: NextFunction) => {
+    const { memberId, groupId } = req.body;
+    const group = await Group.findById(groupId);
+
+    if (group) {
+        group.members = group.members.filter((m) => m._id !== memberId);
+
+        group
+            .save()
+            .then((group) => {
+                return res.status(200).json({
+                    message: 'Removed',
+                    object: group
+                });
+            })
+            .catch((error) => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                });
+            });
+    } else {
+        return res.status(404).json({ message: 'Not found' });
+    }
+};
+
+export default {
+    createGroup,
+    getGroup,
+    getGroups,
+    getGroupsByUserId,
+    joinToGroup,
+    addToGroup,
+    removeFromGroup
+};

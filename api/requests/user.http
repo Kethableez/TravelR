@@ -1,14 +1,28 @@
+GET http://localhost:9000/api/user/get/6212bbb8c9881ffe00efc155 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+###
+
+GET http://localhost:9000/api/user/all HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+###
+
+GET http://localhost:9000/api/user/check/username/user3" HTTP/1.1
+
+###
+
 POST http://localhost:9000/api/user/register HTTP/1.1
 content-type: application/json
 
 {
-    "username": "user3",
-    "email": "user3",
-    "password": "user3",
-    "firstName": "John",
-    "lastName": "Doe",
-    "birthdate": "2000-01-01",
-    "avatarRef": "user/user3"
+    "username": "user5",
+    "email": "user5@travelr.com",
+    "password": "user5",
+    "firstName": "Joseph",
+    "lastName": "Natan",
+    "birthdate": "1998-12-27",
+    "avatarRef": "user/user5"
 }
 
 ###
@@ -20,3 +34,17 @@ content-type: application/json
     "username": "user1",
     "password": "user1"
 }
+
+###
+POST http://localhost:9000/api/user/edit/6212bbf3c9881ffe00efc160 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Amadeusz",
+    "lastName": "Pawle",
+    "birthdate": "1998-08-10"
+}
+
+###
+
+POST http://localhost:9000/api/user/delete/6212bbf3c9881ffe00efc160 HTTP/1.1
