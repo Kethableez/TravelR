@@ -1,0 +1,22 @@
+POST http://localhost:9000/api/user/register HTTP/1.1
+content-type: application/json
+
+{
+    "username": "user3",
+    "email": "user3",
+    "password": "user3",
+    "firstName": "John",
+    "lastName": "Doe",
+    "birthdate": "2000-01-01",
+    "avatarRef": "user/user3"
+}
+
+###
+
+POST http://localhost:9000/api/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "user1",
+    "password": "user1"
+}
