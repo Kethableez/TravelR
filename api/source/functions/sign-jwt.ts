@@ -6,7 +6,10 @@ import IUser from '../models/interfaces/user';
 
 const NAMESPACE = 'Auth';
 
-const signJWT = (user: IUser, callback: (error: Error | null | unknown, token: string | null) => void): void => {
+const signJWT = (
+    user: IUser,
+    callback: (error: Error | null | unknown, token: string | null) => void
+): void => {
     var timeSinceEpoch = new Date().getTime();
     var expirationTime = timeSinceEpoch + Number(config.server.token.expireTime) * 100000;
     var expirationTimeInSec = Math.floor(expirationTime / 1000);
@@ -15,7 +18,7 @@ const signJWT = (user: IUser, callback: (error: Error | null | unknown, token: s
     try {
         jwt.sign(
             {
-                id: user.id
+                id: user._id
             },
             config.server.token.secret,
             {

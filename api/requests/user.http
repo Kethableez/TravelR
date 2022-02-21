@@ -1,5 +1,5 @@
 GET http://localhost:9000/api/user/get/6212bbb8c9881ffe00efc155 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMTU5MywiZXhwIjozMjkxMTYzMTg2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.HNemXgq0-UT_KsNF0ddR9tUAAdbfSjNcQ-zu9-77lGw
 
 ###
 
@@ -9,6 +9,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Y
 ###
 
 GET http://localhost:9000/api/user/check/username/user3" HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMTU5MywiZXhwIjozMjkxMTYzMTg2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.HNemXgq0-UT_KsNF0ddR9tUAAdbfSjNcQ-zu9-77lGw
 
 ###
 

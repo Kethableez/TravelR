@@ -49,7 +49,7 @@ const createUser = (req: Request, res: Response, next: NextFunction) => {
     });
 };
 
-const editUser = (req: Request, res: Response, next: NextFunction) => {
+const editUser = async (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId;
     const data = req.body;
 
@@ -171,6 +171,9 @@ const getUsers = (req: Request, res: Response, next: NextFunction) => {
 
 // TODO
 const check = (req: Request, res: Response, next: NextFunction) => {
+    const x = res.locals.jwt;
+    console.log(x);
+
     const selector = req.params.selector;
     const value = req.params.value;
     console.log(selector, value);
