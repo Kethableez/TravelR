@@ -1,5 +1,6 @@
-GET http://localhost:9000/api/group/get/6212d3d29b44a0ff8b15f402 HTTP/1.1
+GET http://localhost:9000/api/group/get/6212bad5c9881ffe00efc14d HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
 
 ###
 
@@ -8,14 +9,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Y
 
 ###
 
-GET http://localhost:9000/api/group/get-user-groups/6212baf5c9881ffe00efc151 HTTP/1.1
+GET http://localhost:9000/api/group/get-user-groups/6212bbb8c9881ffe00efc155 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
 
 ###
 
 POST http://localhost:9000/api/group/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwNjkyNiwiZXhwIjozMjkxMTczODUyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.CLhpeJGnEs3ZE5XIIg_MWXzvFiPmSt_LS5Qtf8EuOP4
 
 
 {
@@ -32,8 +33,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Y
 
 
 {
-    "groupId": "6212d3d29b44a0ff8b15f402",
-    "memberId": "6212baf5c9881ffe00efc151",
+    "groupId": "6212eaddff2fd7de72d5151f",
+    "memberId": "6212bad5c9881ffe00efc14d",
     "invitationCode": "123ABC"
 }
 
@@ -43,10 +44,9 @@ POST http://localhost:9000/api/group/add HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
 
-
 {
-    "groupId": "6212d3d29b44a0ff8b15f402",
-    "memberEmail": "user3@travelr.com"
+    "groupId": "6212eaddff2fd7de72d5151f",
+    "memberEmail": "user4@travelr.com"
 }
 
 ###
@@ -57,6 +57,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Y
 
 
 {
-    "groupId": "6212d3d29b44a0ff8b15f402",
-    "memberId": "6212bbb8c9881ffe00efc155"
+    "groupId": "6212eaddff2fd7de72d5151f",
+    "memberId": "6212bbd6c9881ffe00efc159"
 }

@@ -19,12 +19,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
                 const newGroup = new Group({
                     name: group.name,
                     coverPhotoRef: group.coverPhotoRef,
-                    founder: {
-                        _id: user._id,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        avatarRef: user.avatarRef
-                    },
+                    founder: new ObjectId(user._id),
                     members: [],
                     invitationCode: '123ABC',
                     journeys: []
@@ -117,7 +112,14 @@ const getGroupsByUserId = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId;
 
     Group.find({
-        $or: [{ 'founder._id': userId }, { members: { $elemMatch: { _id: userId } } }]
+        $or: [
+            {
+                founder: new ObjectId(userId)
+            },
+            {
+                members: new ObjectId(userId)
+            }
+        ]
     })
         .exec()
         .then((groups) => {
@@ -140,15 +142,10 @@ const joinToGroup = async (req: Request, res: Response, next: NextFunction) => {
     if (group && newMember) {
         if (
             group.invitationCode === invitationCode &&
-            memberId !== group.founder._id &&
-            !includes(group.members, memberId)
+            memberId !== group.founder.toString() &&
+            !includes(group.members, new ObjectId(memberId))
         ) {
-            group.members.push({
-                _id: newMember._id,
-                firstName: newMember.firstName,
-                lastName: newMember.lastName,
-                avatarRef: newMember.avatarRef
-            });
+            group.members.push(new ObjectId(newMember._id));
 
             group
                 .save()
@@ -176,16 +173,13 @@ const joinToGroup = async (req: Request, res: Response, next: NextFunction) => {
 
 const addToGroup = async (req: Request, res: Response, next: NextFunction) => {
     const { memberEmail, groupId } = req.body;
+
     const newMember = await User.findOne({ email: memberEmail });
     const group = await Group.findById(groupId);
 
+    // TODO: Check if user already in!!!
     if (newMember && group) {
-        group.members.push({
-            _id: newMember._id,
-            firstName: newMember.firstName,
-            lastName: newMember.lastName,
-            avatarRef: newMember.avatarRef
-        });
+        group.members.push(new ObjectId(newMember._id));
 
         group
             .save()
@@ -211,7 +205,7 @@ const removeFromGroup = async (req: Request, res: Response, next: NextFunction) 
     const group = await Group.findById(groupId);
 
     if (group) {
-        group.members = group.members.filter((m) => m._id !== memberId);
+        group.members = group.members.filter((m) => m.toString() !== memberId);
 
         group
             .save()

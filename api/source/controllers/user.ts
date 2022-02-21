@@ -31,8 +31,7 @@ const createUser = (req: Request, res: Response, next: NextFunction) => {
             firstName: user.firstName,
             lastName: user.lastName,
             birthdate: user.birthdate,
-            avatarRef: user.avatarRef,
-            groups: []
+            avatarRef: user.avatarRef
         });
 
         newUser

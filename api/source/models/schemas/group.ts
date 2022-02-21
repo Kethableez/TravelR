@@ -6,21 +6,9 @@ const ObjectId = mongoose.Types.ObjectId;
 const GroupSchema: Schema = new Schema({
     name: { type: String, required: true },
     coverPhotoRef: { type: String, required: true },
-    founder: {
-        _id: { type: String, required: true },
-        firstName: { type: String, required: true },
-        lastName: { type: String, required: true },
-        avatarRef: { type: String, required: true }
-    },
-    members: [
-        {
-            _id: { type: String, required: true },
-            firstName: { type: String, required: true },
-            lastName: { type: String, required: true },
-            avatarRef: { type: String, required: true }
-        }
-    ],
+    founder: { type: ObjectId, required: true },
     invitationCode: { type: String, required: true },
+    members: { type: [ObjectId] },
     journeys: { type: [String] }
 });
 

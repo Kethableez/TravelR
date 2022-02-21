@@ -8,5 +8,4 @@ export default interface IUser extends Document {
     lastName: string;
     birthdate: string;
     avatarRef: string;
-    groups: string[];
 }
