@@ -1,0 +1,41 @@
+@hostname = localhost
+@port = 9000
+@suffix = api
+@module = attraction
+@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
+@contentType = application/json
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+POST {{baseUrl}}/create HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
+{
+    "name": "Wrocław Rynek",
+    "description": "Rynek we Wrocławiu"
+}
+
+###
+
+POST {{baseUrl}}/edit/62191ba488d1019ce057bed1 HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
+{
+    "description": "asd"
+}
+
+###
+
+POST {{baseUrl}}/delete/62191fb683e84adabb3b54af HTTP/1.1
+Authorization: {{auth}}
+
+###
+
+GET {{baseUrl}}/all HTTP/1.1
+Authorization: {{auth}}
+
+###
+
+GET {{baseUrl}}/get/62191fb683e84adabb3b54af HTTP/1.1
+Authorization: {{auth}}

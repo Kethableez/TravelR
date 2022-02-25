@@ -1,0 +1,51 @@
+@hostname = localhost
+@port = 9000
+@suffix = api
+@module = journey
+@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
+@contentType = application/json
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+
+GET {{baseUrl}}/all HTTP/1.1
+Authorization: {{auth}}
+
+###
+
+GET {{baseUrl}}/get/62192a6b1504664474863299 HTTP/1.1
+Authorization: {{auth}}
+
+###
+
+POST {{baseUrl}}/create HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
+{
+    "groupId": "62191517452b486b257d2677",
+    "data": {
+        "name": "Wycieczka do Gdańska",
+        "description": "Tam i z powrotem",
+        "startDate": "2022-02-21",
+        "endDate": "2022-02-24",
+        "attractions": [
+            "62191bbf88d1019ce057bed4",
+            "62191be988d1019ce057bed7",
+            "62191ff1fe655cf14b76e38e"
+        ]
+    }
+}
+
+###
+
+POST {{baseUrl}}/edit/62192a6b1504664474863299 HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
+{
+    "name": "Twoja stara"
+}
+
+###
+
+POST {{baseUrl}}/delete/62192a6b1504664474863299 HTTP/1.1
+Authorization: {{auth}}

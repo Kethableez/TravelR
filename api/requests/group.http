@@ -1,62 +1,79 @@
-GET http://localhost:9000/api/group/get/6212bad5c9881ffe00efc14d HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+@hostname = localhost
+@port = 9000
+@suffix = api
+@module = group
+@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
+@contentType = application/json
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTkwMTUzZWVjNzQ4ODA3NmQzNjg2MiIsImlhdCI6MTY0NTgzMjMzNSwiZXhwIjozMjkyMDI0NjcwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.d6LP-H2MqwBeWGvQfRZDNL_aLft1dJfm0eGUPaxrYh8
 
-
-###
-
-GET http://localhost:9000/api/group/all HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
-
-###
-
-GET http://localhost:9000/api/group/get-user-groups/6212bbb8c9881ffe00efc155 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+GET {{baseUrl}}/62190219b103f1dde78b1d2d HTTP/1.1
+Authorization: {{auth}}
 
 ###
 
-POST http://localhost:9000/api/group/create HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwNjkyNiwiZXhwIjozMjkxMTczODUyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.CLhpeJGnEs3ZE5XIIg_MWXzvFiPmSt_LS5Qtf8EuOP4
+GET {{baseUrl}}/all HTTP/1.1
+Authorization: {{auth}}
 
+###
+
+GET {{baseUrl}}/get-user-groups/6219028eb103f1dde78b1d33 HTTP/1.1
+Authorization: {{auth}}
+
+###
+
+POST {{baseUrl}}/edit/6219682a543fae5ad6e8b8fb HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
 
 {
-    "name": "Grupa 123",
-    "coverPhotoRef": "group/123",
-    "founder": "6212bad5c9881ffe00efc14d"
+    "name": "Grupa 555"
 }
 
 ###
 
-POST http://localhost:9000/api/group/join HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+POST {{baseUrl}}/delete/6219682a543fae5ad6e8b8fb HTTP/1.1
+Authorization: {{auth}}
 
+###
+
+POST {{baseUrl}}/create HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
 
 {
-    "groupId": "6212eaddff2fd7de72d5151f",
-    "memberId": "6212bad5c9881ffe00efc14d",
+    "name": "Grupa 234"
+}
+
+###
+
+POST {{baseUrl}}/join HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
+{
+    "groupId": "62190219b103f1dde78b1d2d",
+    "memberId": "6219059129b0a8bf87a6ea42",
     "invitationCode": "123ABC"
 }
 
 ###
 
-POST http://localhost:9000/api/group/add HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+POST {{baseUrl}}/add HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
 
 {
-    "groupId": "6212eaddff2fd7de72d5151f",
+    "groupId": "6219682a543fae5ad6e8b8fb",
     "memberEmail": "user4@travelr.com"
 }
 
 ###
 
-POST http://localhost:9000/api/group/remove HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
-
+POST {{baseUrl}}/remove HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
 
 {
-    "groupId": "6212eaddff2fd7de72d5151f",
-    "memberId": "6212bbd6c9881ffe00efc159"
+    "groupId": "6219682a543fae5ad6e8b8fb",
+    "memberId": "6219682a543fae5ad6e8b8fb"
 }

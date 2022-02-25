@@ -9,7 +9,7 @@ const GroupSchema: Schema = new Schema({
     founder: { type: ObjectId, required: true },
     invitationCode: { type: String, required: true },
     members: { type: [ObjectId] },
-    journeys: { type: [String] }
+    journeys: { type: [ObjectId] }
 });
 
 export default mongoose.model<IGroup>('Group', GroupSchema);

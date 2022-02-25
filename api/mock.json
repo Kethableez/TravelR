@@ -1,0 +1,60 @@
+{
+    "users": [
+        {
+            "_id": "1",
+            "username": "user1",
+            "email": "user1@travelr.com",
+            "password": "user1",
+            "firstName": "John",
+            "lastName": "Doe",
+            "birthdate": "2000-01-01T00:00:00.000+00:00",
+            "avatarRef": "user/1"
+        }
+    ],
+    "groups": [
+        {
+            "_id": "1",
+            "name": "Grupa 123",
+            "coverPhotoRef": "group/1",
+            "founderId": "1",
+            "members": [
+                "2", "3", "4"
+            ],
+            "invitationCode": "123ABC",
+            "journeysId": [ "1", "2", "3" ]
+
+        }
+    ],
+    "attractions": [
+        {
+            "_id": "1",
+            "name": "Rynek Wrocławski",
+            "description": "Rynek we Wrocławiu",
+            "address": {
+                "zipCode": "50-529",
+                "city": "Wrocław",
+                "street": "Rynek",
+                "number": null
+            },
+            "coverPhotoRef": "attraction/1"
+        }
+    ],
+    "journeys": [
+        {
+            "_id": "1",
+            "name": "Wycieczka 1",
+            "description": "Desc1",
+            "coverPhotoRef": "journey/1",
+            "startDate": "2022-02-21",
+            "endDate": "2022-02-24",
+            "attractions": [
+                {
+                    "attractionRef": "1",
+                    "date": "2022-02-21",
+                    "startTime": "10:00",
+                    "endTime": "12:00"
+                }
+            ]
+        }
+    ]
+}

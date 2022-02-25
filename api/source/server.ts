@@ -8,6 +8,8 @@ import config from './config/config';
 
 import userRoutes from './routes/user';
 import groupRoutes from './routes/group';
+import attractionRoutes from './routes/attraction';
+import journeyRoutes from './routes/journey';
 
 const NAMESPACE = 'Server';
 const router = express();
@@ -23,10 +25,16 @@ mongoose
     });
 
 router.use((req, res, next) => {
-    logging.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+    logging.info(
+        NAMESPACE,
+        `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`
+    );
 
     res.on('finish', () => {
-        logging.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - STATUS: [${res.statusCode}] - IP: [${req.socket.remoteAddress}]`);
+        logging.info(
+            NAMESPACE,
+            `METHOD: [${req.method}] - URL: [${req.url}] - STATUS: [${res.statusCode}] - IP: [${req.socket.remoteAddress}]`
+        );
     });
 
     next();
@@ -36,7 +44,10 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    );
 
     if (req.method == 'OPTIONS') {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
@@ -48,6 +59,8 @@ router.use((req, res, next) => {
 
 router.use('/api/user', userRoutes);
 router.use('/api/group', groupRoutes);
+router.use('/api/attraction', attractionRoutes);
+router.use('/api/journey', journeyRoutes);
 
 router.use((req, res, next) => {
     const error = new Error('Not found');
@@ -59,4 +72,9 @@ router.use((req, res, next) => {
 
 const httpServer = http.createServer(router);
 
-httpServer.listen(config.server.port, () => logging.info(NAMESPACE, `Server is running ${config.server.hostname}:${config.server.port}`));
+httpServer.listen(config.server.port, () =>
+    logging.info(
+        NAMESPACE,
+        `Server is running ${config.server.hostname}:${config.server.port}`
+    )
+);

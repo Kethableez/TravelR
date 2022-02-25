@@ -1,24 +1,32 @@
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 
+import pipeline from '../functions/pipeline';
+
 import User from '../models/schemas/user';
 import Group from '../models/schemas/group';
-import { includes } from 'lodash';
+import { flatten, includes } from 'lodash';
 
 const ObjectId = mongoose.Types.ObjectId;
 
 const NAMESPACE = 'Group Controller';
 
-const createGroup = async (req: Request, res: Response, next: NextFunction) => {
-    const group = req.body;
+const basePipeline = pipeline.groupPipeline;
 
-    User.findById(group.founder)
+const createGroup = async (req: Request, res: Response, next: NextFunction) => {
+    const prefix = 'group';
+    const group = req.body;
+    const founderId = res.locals.jwt.id;
+    const id = new ObjectId();
+
+    User.findById(founderId)
         .exec()
         .then((user) => {
             if (user) {
                 const newGroup = new Group({
+                    _id: id,
                     name: group.name,
-                    coverPhotoRef: group.coverPhotoRef,
+                    coverPhotoRef: [prefix, id].join('/'),
                     founder: new ObjectId(user._id),
                     members: [],
                     invitationCode: '123ABC',
@@ -29,7 +37,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
                     .then((group) => {
                         return res.status(200).json({
                             message: 'Success',
-                            object: group
+                            objectId: group._id
                         });
                     })
                     .catch((error) => {
@@ -46,7 +54,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-const editGroup = (req: Request, res: Response, next: NextFunction) => {
+const editGroup = async (req: Request, res: Response, next: NextFunction) => {
     const groupId = req.params.groupId;
     const data = req.body;
 
@@ -80,8 +88,13 @@ const deleteGroup = (req: Request, res: Response, next: NextFunction) => {
 
 const getGroup = (req: Request, res: Response, next: NextFunction) => {
     const groupId = req.params.groupId;
+    const byId: any = {
+        $match: { _id: new ObjectId(groupId) }
+    };
 
-    Group.findById(groupId)
+    const pipeline: any[] = flatten([byId, basePipeline]);
+
+    Group.aggregate(pipeline)
         .exec()
         .then((group) => {
             return res.status(200).json(group);
@@ -95,10 +108,10 @@ const getGroup = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getGroups = (req: Request, res: Response, next: NextFunction) => {
-    Group.find()
+    Group.aggregate(basePipeline)
         .exec()
-        .then((groups) => {
-            return res.status(200).json(groups);
+        .then((group) => {
+            return res.status(200).json(group);
         })
         .catch((error) => {
             return res.status(500).json({
@@ -111,19 +124,25 @@ const getGroups = (req: Request, res: Response, next: NextFunction) => {
 const getGroupsByUserId = (req: Request, res: Response, next: NextFunction) => {
     const userId = req.params.userId;
 
-    Group.find({
-        $or: [
-            {
-                founder: new ObjectId(userId)
-            },
-            {
-                members: new ObjectId(userId)
-            }
-        ]
-    })
+    const byUserId: any = {
+        $match: {
+            $or: [
+                {
+                    founder: new ObjectId(userId)
+                },
+                {
+                    members: new ObjectId(userId)
+                }
+            ]
+        }
+    };
+
+    const pipeline = flatten([byUserId, basePipeline]);
+
+    Group.aggregate(pipeline)
         .exec()
-        .then((groups) => {
-            return res.status(200).json(groups);
+        .then((group) => {
+            return res.status(200).json(group);
         })
         .catch((error) => {
             return res.status(500).json({
@@ -140,10 +159,12 @@ const joinToGroup = async (req: Request, res: Response, next: NextFunction) => {
     const newMember = await User.findById(memberId);
 
     if (group && newMember) {
+        const members = group.members.map((mem) => mem.toString());
+
         if (
             group.invitationCode === invitationCode &&
             memberId !== group.founder.toString() &&
-            !includes(group.members, new ObjectId(memberId))
+            !includes(members, memberId)
         ) {
             group.members.push(new ObjectId(newMember._id));
 
@@ -177,24 +198,33 @@ const addToGroup = async (req: Request, res: Response, next: NextFunction) => {
     const newMember = await User.findOne({ email: memberEmail });
     const group = await Group.findById(groupId);
 
-    // TODO: Check if user already in!!!
     if (newMember && group) {
-        group.members.push(new ObjectId(newMember._id));
+        const memberId = newMember._id.toString();
 
-        group
-            .save()
-            .then((group) => {
-                return res.status(200).json({
-                    message: 'Joined',
-                    object: group
+        const members = group.members.map((m) => m.toString());
+
+        if (memberId !== group.founder.toString() && !includes(members, memberId)) {
+            group.members.push(new ObjectId(memberId));
+
+            group
+                .save()
+                .then((group) => {
+                    return res.status(200).json({
+                        message: 'Joined',
+                        object: group
+                    });
+                })
+                .catch((error) => {
+                    return res.status(500).json({
+                        message: error.message,
+                        error
+                    });
                 });
-            })
-            .catch((error) => {
-                return res.status(500).json({
-                    message: error.message,
-                    error
-                });
+        } else {
+            return res.status(400).json({
+                message: 'Already a member!'
             });
+        }
     } else {
         return res.status(404).json({ message: 'Not found' });
     }
@@ -228,6 +258,8 @@ const removeFromGroup = async (req: Request, res: Response, next: NextFunction) 
 
 export default {
     createGroup,
+    editGroup,
+    deleteGroup,
     getGroup,
     getGroups,
     getGroupsByUserId,

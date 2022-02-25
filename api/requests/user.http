@@ -1,35 +1,42 @@
-GET http://localhost:9000/api/user/get/6212bbb8c9881ffe00efc155 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMTU5MywiZXhwIjozMjkxMTYzMTg2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.HNemXgq0-UT_KsNF0ddR9tUAAdbfSjNcQ-zu9-77lGw
+@hostname = localhost
+@port = 9000
+@suffix = api
+@module = user
+@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
+@contentType = application/json
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTkwMjhlYjEwM2YxZGRlNzhiMWQzMyIsImlhdCI6MTY0NTgzMTcyNSwiZXhwIjozMjkyMDIzNDUwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.zn8P--w0bgjqQ8CdqwobaMj0Bk6Qj73UtzetVsuBZCA
+
+GET {{baseUrl}}/get/6212bbb8c9881ffe00efc155 HTTP/1.1
+Authorization: {{auth}}
 
 ###
 
-GET http://localhost:9000/api/user/all HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+GET {{baseUrl}}/all HTTP/1.1
+Authorization: {{auth}}
 
 ###
 
-GET http://localhost:9000/api/user/check/username/user3" HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMTU5MywiZXhwIjozMjkxMTYzMTg2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.HNemXgq0-UT_KsNF0ddR9tUAAdbfSjNcQ-zu9-77lGw
+GET {{baseUrl}}/check/username/user4" HTTP/1.1
+Authorization: {{auth}}
 
 ###
 
-POST http://localhost:9000/api/user/register HTTP/1.1
-content-type: application/json
+POST {{baseUrl}}/register HTTP/1.1
+content-type: {{contentType}}
 
 {
     "username": "user5",
     "email": "user5@travelr.com",
     "password": "user5",
-    "firstName": "Joseph",
-    "lastName": "Natan",
-    "birthdate": "1998-12-27",
-    "avatarRef": "user/user5"
+    "firstName": "Michael",
+    "lastName": "Dawson",
+    "birthdate": "2000-06-27"
 }
 
 ###
 
-POST http://localhost:9000/api/user/login HTTP/1.1
-content-type: application/json
+POST {{baseUrl}}/login HTTP/1.1
+content-type: {{contentType}}
 
 {
     "username": "user1",
@@ -37,8 +44,10 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:9000/api/user/edit/6212bbf3c9881ffe00efc160 HTTP/1.1
-content-type: application/json
+POST {{baseUrl}}/edit/6212bbf3c9881ffe00efc160 HTTP/1.1
+content-type: {{contentType}}
+Authorization: {{auth}}
+
 
 {
     "firstName": "Amadeusz",
@@ -48,4 +57,5 @@ content-type: application/json
 
 ###
 
-POST http://localhost:9000/api/user/delete/6212bbf3c9881ffe00efc160 HTTP/1.1
+POST {{baseUrl}}/delete/6212bbf3c9881ffe00efc160 HTTP/1.1
+Authorization: {{auth}}

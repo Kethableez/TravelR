@@ -13,6 +13,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const NAMESPACE = 'User Controller';
 
 const createUser = (req: Request, res: Response, next: NextFunction) => {
+    const prefix = 'user';
     const user: IUser = req.body;
 
     bcryptjs.hash(user.password, 10, (hashError, hash) => {
@@ -23,21 +24,26 @@ const createUser = (req: Request, res: Response, next: NextFunction) => {
             });
         }
 
+        const id = new ObjectId();
+
         const newUser = new User({
-            _id: new ObjectId(),
+            _id: id,
             username: user.username,
             email: user.email,
             password: hash,
             firstName: user.firstName,
             lastName: user.lastName,
             birthdate: user.birthdate,
-            avatarRef: user.avatarRef
+            avatarRef: [prefix, id].join('/')
         });
 
         newUser
             .save()
             .then((user) => {
-                return res.status(201).json(user);
+                return res.status(201).json({
+                    message: 'Created',
+                    objectId: user._id
+                });
             })
             .catch((error) => {
                 return res.status(500).json({
