@@ -1,22 +1,16 @@
-@hostname = localhost
-@port = 9000
-@suffix = api
 @module = journey
-@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
-@contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzZhNjIxYTk4NzJiYmE3Njg2NyIsImlhdCI6MTY0NTg4MTI0NiwiZXhwIjozMjkyMTIyNDkyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.6d4WUmVgAIt1puLzkMX5vHhWWBFZMl2A32Ct7vE2-s4
 
-GET {{baseUrl}}/all HTTP/1.1
+GET {{baseUrl}}/{{module}}/all HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/get/62192a6b1504664474863299 HTTP/1.1
+GET {{baseUrl}}/{{module}}/get/62192a6b1504664474863299 HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/create HTTP/1.1
+POST {{baseUrl}}/{{module}}/create HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -37,7 +31,7 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/edit/621a24b4621a9872bba76891 HTTP/1.1
+POST {{baseUrl}}/{{module}}/edit/621a24b4621a9872bba76891 HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -47,5 +41,5 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/delete/62192a6b1504664474863299 HTTP/1.1
+POST {{baseUrl}}/{{module}}/delete/62192a6b1504664474863299 HTTP/1.1
 Authorization: {{auth}}

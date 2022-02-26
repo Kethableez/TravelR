@@ -12,5 +12,14 @@
         "editor.wordWrap": "on",
         "editor.renderWhitespace": "all",
         "editor.acceptSuggestionOnEnter": "off"
+    },
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "auth": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzZhNjIxYTk4NzJiYmE3Njg2NyIsImlhdCI6MTY0NTg4MzM5OCwiZXhwIjozMjkyMTI2Nzk2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.xloHj1vdHybcv3nvdmoxOlfc90uIfcixE-Ipkwy6u8A",
+            "contentType": "application/json"
+        },
+        "local": {
+            "baseUrl": "http://localhost:9000/api"
+        }
     }
 }

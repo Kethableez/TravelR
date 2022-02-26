@@ -1,12 +1,6 @@
-@hostname = localhost
-@port = 9000
-@suffix = api
 @module = attraction
-@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
-@contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzNlNjIxYTk4NzJiYmE3Njg1YiIsImlhdCI6MTY0NTg4MDI4NiwiZXhwIjozMjkyMTIwNTcyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.t2rAAw1Nn5MCavlPFs2IGAW-jDNmXk9rlHXxvoTbA_Q
 
-POST {{baseUrl}}/create HTTP/1.1
+POST {{baseUrl}}/{{module}}/create HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -19,7 +13,7 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/edit/62191ba488d1019ce057bed1 HTTP/1.1
+POST {{baseUrl}}/{{module}}/edit/62191ba488d1019ce057bed1 HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -29,15 +23,15 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/delete/62191fb683e84adabb3b54af HTTP/1.1
+POST {{baseUrl}}/{{module}}/delete/62191fb683e84adabb3b54af HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/all HTTP/1.1
+GET {{baseUrl}}/{{module}}/all HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/get/62191fb683e84adabb3b54af HTTP/1.1
+GET {{baseUrl}}/{{module}}/get/62191fb683e84adabb3b54af HTTP/1.1
 Authorization: {{auth}}

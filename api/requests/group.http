@@ -1,27 +1,20 @@
-@hostname = localhost
-@port = 9000
-@suffix = api
 @module = group
-@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
-@contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzNlNjIxYTk4NzJiYmE3Njg1YiIsImlhdCI6MTY0NTg4MDE5MCwiZXhwIjozMjkyMTIwMzgwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.veQm-jBrir4ZxXgBT13DsR7phVQl29UGE_EveX4m0RU
 
-GET {{baseUrl}}/62190219b103f1dde78b1d2d HTTP/1.1
+GET {{baseUrl}}/{{module}}/62190219b103f1dde78b1d2d HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/all HTTP/1.1
+GET {{baseUrl}}/{{module}}/all HTTP/1.1
+Authorization: {{auth}}
+
+###
+GET {{baseUrl}}/{{module}}/get-user-groups/6219028eb103f1dde78b1d33 HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/get-user-groups/6219028eb103f1dde78b1d33 HTTP/1.1
-Authorization: {{auth}}
-
-###
-
-POST {{baseUrl}}/edit/6219682a543fae5ad6e8b8fb HTTP/1.1
+POST {{baseUrl}}/{{module}}/edit/6219682a543fae5ad6e8b8fb HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -31,12 +24,12 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/delete/6219682a543fae5ad6e8b8fb HTTP/1.1
+POST {{baseUrl}}/{{module}}/delete/6219682a543fae5ad6e8b8fb HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/create HTTP/1.1
+POST {{baseUrl}}/{{module}}/create HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -46,7 +39,7 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/join HTTP/1.1
+POST {{baseUrl}}/{{module}}/join HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -58,7 +51,7 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/add HTTP/1.1
+POST {{baseUrl}}/{{module}}/add HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -69,7 +62,7 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/remove HTTP/1.1
+POST {{baseUrl}}/{{module}}/remove HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 

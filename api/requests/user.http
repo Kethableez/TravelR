@@ -1,26 +1,20 @@
-@hostname = localhost
-@port = 9000
-@suffix = api
 @module = user
-@baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
-@contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTkwMjhlYjEwM2YxZGRlNzhiMWQzMyIsImlhdCI6MTY0NTgzMTcyNSwiZXhwIjozMjkyMDIzNDUwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.zn8P--w0bgjqQ8CdqwobaMj0Bk6Qj73UtzetVsuBZCA
 
-GET {{baseUrl}}/get/6212bbb8c9881ffe00efc155 HTTP/1.1
+GET {{baseUrl}}/{{module}}/get/6212bbb8c9881ffe00efc155 HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/all HTTP/1.1
+GET {{baseUrl}}/{{module}}/all HTTP/1.1
 Authorization: {{auth}}
 
 ###
 
-GET {{baseUrl}}/check/username/user6 HTTP/1.1
+GET {{baseUrl}}/{{module}}/check/username/user6 HTTP/1.1
 
 ###
 
-POST {{baseUrl}}/register HTTP/1.1
+POST {{baseUrl}}/{{module}}/register HTTP/1.1
 content-type: {{contentType}}
 
 {
@@ -34,7 +28,7 @@ content-type: {{contentType}}
 
 ###
 
-POST {{baseUrl}}/login HTTP/1.1
+POST {{baseUrl}}/{{module}}/login HTTP/1.1
 content-type: {{contentType}}
 
 {
@@ -43,7 +37,7 @@ content-type: {{contentType}}
 }
 
 ###
-POST {{baseUrl}}/edit/6212bbf3c9881ffe00efc160 HTTP/1.1
+POST {{baseUrl}}/{{module}}/edit/6212bbf3c9881ffe00efc160 HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
@@ -56,5 +50,5 @@ Authorization: {{auth}}
 
 ###
 
-POST {{baseUrl}}/delete/6212bbf3c9881ffe00efc160 HTTP/1.1
+POST {{baseUrl}}/{{module}}/delete/6212bbf3c9881ffe00efc160 HTTP/1.1
 Authorization: {{auth}}
