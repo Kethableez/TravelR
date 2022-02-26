@@ -5,10 +5,10 @@ import logging from '../config/logging';
 
 const NAMESPACE = 'Auth';
 
-const extractJWT = (req: Request, res: Response, next: NextFunction) => {
+const validateJWT = (req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, 'Validating token');
 
-    let token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization?.split(' ')[1];
 
     if (token) {
         jwt.verify(token, config.server.token.secret, (error, decoded) => {
@@ -29,4 +29,4 @@ const extractJWT = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export default extractJWT;
+export default validateJWT;

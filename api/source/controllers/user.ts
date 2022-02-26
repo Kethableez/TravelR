@@ -13,21 +13,20 @@ const ObjectId = mongoose.Types.ObjectId;
 const NAMESPACE = 'User Controller';
 
 const getQuery = (selector: string, value: string) => {
-    const queryList =  [
+    const queryList = [
         {
-            'email': value
+            email: value
         },
         {
-            'username': value
+            username: value
         }
-    ]
+    ];
     const index = selector === 'email' ? 0 : 1;
 
     return queryList[index];
-}
+};
 
 const createUser = (req: Request, res: Response, next: NextFunction) => {
-    const prefix = 'user';
     const user: IUser = req.body;
 
     bcryptjs.hash(user.password, 10, (hashError, hash) => {
@@ -48,7 +47,7 @@ const createUser = (req: Request, res: Response, next: NextFunction) => {
             firstName: user.firstName,
             lastName: user.lastName,
             birthdate: user.birthdate,
-            avatarRef: [prefix, id].join('/')
+            avatarRef: user.avatarRef
         });
 
         newUser
@@ -111,7 +110,7 @@ const deleteUser = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const login = (req: Request, res: Response, next: NextFunction) => {
-    let { username, password } = req.body;
+    const { username, password } = req.body;
 
     User.find({ username })
         .exec()
@@ -140,7 +139,8 @@ const login = (req: Request, res: Response, next: NextFunction) => {
                                 });
                             } else if (token) {
                                 return res.status(200).json({
-                                    token
+                                    id: head(users)?._id,
+                                    token: token
                                 });
                             }
                         });
@@ -188,31 +188,30 @@ const getUsers = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-
-
 const check = (req: Request, res: Response, next: NextFunction) => {
     const selector = req.params.selector;
     const value = req.params.value;
     const query = getQuery(selector, value);
 
-
-    User.find(query).exec().then(result => {
-        if(isEmpty(result)) {
-            return res.status(200).json({
-                available: true
-            })
-        }
-        else {
-            return res.status(200).json({
-                available: false
-            })
-        }
-    }).catch(error => {
-        return res.status(500).json({
-            message: error.message,
-            error
+    User.find(query)
+        .exec()
+        .then((result) => {
+            if (isEmpty(result)) {
+                return res.status(200).json({
+                    available: true
+                });
+            } else {
+                return res.status(200).json({
+                    available: false
+                });
+            }
         })
-    })
+        .catch((error) => {
+            return res.status(500).json({
+                message: error.message,
+                error
+            });
+        });
 };
 
 export default { createUser, editUser, deleteUser, login, getUser, getUsers, check };

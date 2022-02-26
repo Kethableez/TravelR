@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem;
+  color: white;
+  border-radius: 5px;
+
+  .text-box {
+    width: fit-content;
+    padding: 0 2rem;
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+}
+
+.error {
+  background-color: rgb(194, 63, 161);
+}
+
+.info {
+  background-color: rgb(63, 146, 194);
+}

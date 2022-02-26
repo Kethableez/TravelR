@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="form-header">
+    Sign in
+  </div>
+
+  <form [formGroup]="registerForm" class="form">
+    <input type="text" formControlName="username" placeholder="username">
+    <input type="text" formControlName="email" placeholder="email">
+    <input type="password" formControlName="password" placeholder="password">
+    <input type="text" formControlName="firstName" placeholder="firstName">
+    <input type="text" formControlName="lastName" placeholder="lastName">
+    <input type="date" formControlName="birthdate" placeholder="birthdate">
+    <button [disabled]="!registerForm.valid" (click)="uploadForm()"> Register </button>
+  </form>
+</div>

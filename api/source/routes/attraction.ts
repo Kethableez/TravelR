@@ -1,7 +1,7 @@
 import express from 'express';
 import controller from './../controllers/attraction';
 
-import extractJWT from '../middleware/exctract-jwt';
+import validateJWT from '../middleware/validate-jwt';
 
 const router = express.Router();
 

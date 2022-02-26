@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { isNil } from "lodash";
-import fs from 'fs'
+import fs from 'fs';
 
 import fileUtils from '../functions/file-utils';
 
@@ -10,8 +9,8 @@ const upload = (req: Request, res: Response, next: NextFunction) => {
     return res.status(200).json({
         message: 'Uploaded',
         filename: filename
-    })
-}
+    });
+};
 
 const removeFile = (req: Request, res: Response, next: NextFunction) => {
     const selector = req.params.selector;
@@ -24,15 +23,14 @@ const removeFile = (req: Request, res: Response, next: NextFunction) => {
             return res.status(500).json({
                 message: error.message,
                 error
-            })
-        }
-        else {
+            });
+        } else {
             return res.status(200).json({
                 message: 'Discard action success'
-            })
+            });
         }
-    })
-}
+    });
+};
 
 const download = (req: Request, res: Response, next: NextFunction) => {
     const selector = req.params.selector;
@@ -45,13 +43,13 @@ const download = (req: Request, res: Response, next: NextFunction) => {
             return res.status(500).json({
                 message: error.message,
                 error
-            })
+            });
         }
-    })
-}
+    });
+};
 
 export default {
     upload,
     removeFile,
     download
-}
+};
