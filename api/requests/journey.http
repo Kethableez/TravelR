@@ -4,7 +4,7 @@
 @module = journey
 @baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
 @contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzZhNjIxYTk4NzJiYmE3Njg2NyIsImlhdCI6MTY0NTg4MTI0NiwiZXhwIjozMjkyMTIyNDkyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.6d4WUmVgAIt1puLzkMX5vHhWWBFZMl2A32Ct7vE2-s4
 
 GET {{baseUrl}}/all HTTP/1.1
 Authorization: {{auth}}
@@ -21,23 +21,23 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "groupId": "62191517452b486b257d2677",
+    "groupId": "621a2396621a9872bba76870",
     "data": {
-        "name": "Wycieczka do Gdańska",
-        "description": "Tam i z powrotem",
-        "startDate": "2022-02-21",
-        "endDate": "2022-02-24",
+        "name": "Wycieczka po Wrocławiu",
+        "description": "Spacerek po miejscach",
+        "startDate": "2022-02-28",
+        "endDate": "2022-02-28",
         "attractions": [
-            "62191bbf88d1019ce057bed4",
-            "62191be988d1019ce057bed7",
-            "62191ff1fe655cf14b76e38e"
+            "621a2403621a9872bba76886",
+            "621a2441621a9872bba76889",
+            "621a2450621a9872bba7688c"
         ]
     }
 }
 
 ###
 
-POST {{baseUrl}}/edit/62192a6b1504664474863299 HTTP/1.1
+POST {{baseUrl}}/edit/621a24b4621a9872bba76891 HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 

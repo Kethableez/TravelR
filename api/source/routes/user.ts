@@ -2,11 +2,12 @@ import express from 'express';
 import controller from './../controllers/user';
 
 import extractJWT from '../middleware/exctract-jwt';
+
 const router = express.Router();
 
 router.get('/get/:userId', extractJWT, controller.getUser);
 router.get('/all', extractJWT, controller.getUsers);
-router.get('/check/:selector/:value', extractJWT, controller.check);
+router.get('/check/:selector/:value', controller.check);
 
 router.post('/login', controller.login);
 router.post('/register', controller.createUser);

@@ -4,15 +4,17 @@
 @module = attraction
 @baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
 @contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTJiYWQ1Yzk4ODFmZmUwMGVmYzE0ZCIsImlhdCI6MTY0NTQwMDkxMywiZXhwIjozMjkxMTYxODI2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9._fVbJSTiaRsxz4tT3Yhu45fStt2YrIpDk5iv_Ch43VM
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzNlNjIxYTk4NzJiYmE3Njg1YiIsImlhdCI6MTY0NTg4MDI4NiwiZXhwIjozMjkyMTIwNTcyLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.t2rAAw1Nn5MCavlPFs2IGAW-jDNmXk9rlHXxvoTbA_Q
 
 POST {{baseUrl}}/create HTTP/1.1
 content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "name": "Wrocław Rynek",
-    "description": "Rynek we Wrocławiu"
+    "name": "Ogród botaniczny",
+    "address": {
+        "city": "Wrocław"
+    }
 }
 
 ###

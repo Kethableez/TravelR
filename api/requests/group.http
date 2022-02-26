@@ -4,7 +4,7 @@
 @module = group
 @baseUrl = http://{{hostname}}:{{port}}/{{suffix}}/{{module}}
 @contentType = application/json
-@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTkwMTUzZWVjNzQ4ODA3NmQzNjg2MiIsImlhdCI6MTY0NTgzMjMzNSwiZXhwIjozMjkyMDI0NjcwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.d6LP-H2MqwBeWGvQfRZDNL_aLft1dJfm0eGUPaxrYh8
+@auth = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzNlNjIxYTk4NzJiYmE3Njg1YiIsImlhdCI6MTY0NTg4MDE5MCwiZXhwIjozMjkyMTIwMzgwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.veQm-jBrir4ZxXgBT13DsR7phVQl29UGE_EveX4m0RU
 
 GET {{baseUrl}}/62190219b103f1dde78b1d2d HTTP/1.1
 Authorization: {{auth}}
@@ -41,7 +41,7 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "name": "Grupa 234"
+    "name": "Grupa Rozpierdolu!"
 }
 
 ###
@@ -51,8 +51,8 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "groupId": "62190219b103f1dde78b1d2d",
-    "memberId": "6219059129b0a8bf87a6ea42",
+    "groupId": "621a2396621a9872bba76870",
+    "memberId": "621a2372621a9872bba7686b",
     "invitationCode": "123ABC"
 }
 
@@ -63,8 +63,8 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "groupId": "6219682a543fae5ad6e8b8fb",
-    "memberEmail": "user4@travelr.com"
+    "groupId": "621a2396621a9872bba76870",
+    "memberEmail": "user3@travelr.com"
 }
 
 ###

@@ -10,6 +10,7 @@ import userRoutes from './routes/user';
 import groupRoutes from './routes/group';
 import attractionRoutes from './routes/attraction';
 import journeyRoutes from './routes/journey';
+import fileRouter from './routes/file'
 
 const NAMESPACE = 'Server';
 const router = express();
@@ -61,6 +62,7 @@ router.use('/api/user', userRoutes);
 router.use('/api/group', groupRoutes);
 router.use('/api/attraction', attractionRoutes);
 router.use('/api/journey', journeyRoutes);
+router.use('/api/file', fileRouter);
 
 router.use((req, res, next) => {
     const error = new Error('Not found');

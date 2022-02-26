@@ -12,6 +12,20 @@ const ObjectId = mongoose.Types.ObjectId;
 
 const NAMESPACE = 'User Controller';
 
+const getQuery = (selector: string, value: string) => {
+    const queryList =  [
+        {
+            'email': value
+        },
+        {
+            'username': value
+        }
+    ]
+    const index = selector === 'email' ? 0 : 1;
+
+    return queryList[index];
+}
+
 const createUser = (req: Request, res: Response, next: NextFunction) => {
     const prefix = 'user';
     const user: IUser = req.body;
@@ -174,38 +188,31 @@ const getUsers = (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-// TODO
-const check = (req: Request, res: Response, next: NextFunction) => {
-    const x = res.locals.jwt;
-    console.log(x);
 
+
+const check = (req: Request, res: Response, next: NextFunction) => {
     const selector = req.params.selector;
     const value = req.params.value;
-    console.log(selector, value);
-    User.find()
-        .where(selector)
-        .equals(value)
-        .exec()
-        .then((users) => {
-            console.log(users);
-            if (isEmpty(users)) {
-                return res.status(200).json({
-                    available: true,
-                    selector
-                });
-            } else {
-                return res.status(400).json({
-                    available: false,
-                    selector
-                });
-            }
+    const query = getQuery(selector, value);
+
+
+    User.find(query).exec().then(result => {
+        if(isEmpty(result)) {
+            return res.status(200).json({
+                available: true
+            })
+        }
+        else {
+            return res.status(200).json({
+                available: false
+            })
+        }
+    }).catch(error => {
+        return res.status(500).json({
+            message: error.message,
+            error
         })
-        .catch((error) => {
-            return res.status(500).json({
-                message: error.message,
-                error
-            });
-        });
+    })
 };
 
 export default { createUser, editUser, deleteUser, login, getUser, getUsers, check };
