@@ -121,9 +121,11 @@ const login = (req: Request, res: Response, next: NextFunction) => {
                 });
             }
 
+            const user = head(users);
+
             bcryptjs.compare(
                 password,
-                (head(users) as IUser).password,
+                (user as IUser).password,
                 (error, result) => {
                     if (error) {
                         logging.error(NAMESPACE, error.message, error);
@@ -132,14 +134,15 @@ const login = (req: Request, res: Response, next: NextFunction) => {
                             error
                         });
                     } else if (result) {
-                        signJWT(head(users) as IUser, (_error, token) => {
+                        signJWT(user as IUser, (_error, token) => {
                             if (_error) {
                                 return res.status(500).json({
                                     message: 'An error has occured'
                                 });
                             } else if (token) {
                                 return res.status(200).json({
-                                    id: head(users)?._id,
+                                    id: user?._id,
+                                    userData: user,
                                     token: token
                                 });
                             }

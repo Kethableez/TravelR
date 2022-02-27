@@ -28,6 +28,18 @@ export class SettingService {
     return this.getPath('user', action, parameters);
   }
 
+  getGroupUrl(action: string, parameters?: any): string {
+    return this.getPath('group', action, parameters);
+  }
+
+  getJourneyUrl(action: string, parameters?: any): string {
+    return this.getPath('journey', action, parameters);
+  }
+
+  getAttractionUrl(action: string, parameters?: any): string {
+    return this.getPath('attraction', action, parameters);
+  }
+
   getFileUrl(action: string, parameters?: any): string {
     return this.getPath('file', action, parameters);
   }
@@ -52,6 +64,7 @@ export class SettingService {
 
   private getCall(moduleName: string, action: string, parameters?: any): string {
     const call = this.getModule(moduleName).calls[action];
+    console.log(call);
     if(parameters) {
       return this.pathInjector.injectPathParameters(call, parameters);
     }

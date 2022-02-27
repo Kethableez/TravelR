@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import User from '../models/user.model';
+import { map, Observable, tap } from 'rxjs';
+import { IUser } from '../models/responses/user-response.model';
+import { User } from '../models/user.model';
 import { SettingService } from './setting.service';
 
 @Injectable({
@@ -17,10 +18,8 @@ export class UserService {
   getUserData(userId: string): Observable<User> {
     const url = this.settings.getUserUrl('getUserById', { userId: userId });
 
-    return this.http.get<User>(url).pipe(
-      tap(user => {
-        console.log(user);
-      })
-    )
+    return this.http.get<IUser>(url).pipe(
+      map(user => new User(user))
+    );
   }
 }

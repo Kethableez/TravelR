@@ -22,7 +22,7 @@ const urls: any = {
     calls: {
       getAllGroups: 'all',
       getGroupById: 'get/:groupId',
-      getUserGroups: 'get-user-groups/:groupId',
+      getUserGroups: 'get-user-groups/:userId',
       createGroup: 'create',
       editGroup: 'edit/:groupId',
       deleteGroup: 'delete/:groupId',

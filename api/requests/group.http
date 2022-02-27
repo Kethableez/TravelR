@@ -34,7 +34,7 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "name": "Grupa Rozpierdolu!"
+    "name": "John i inni!"
 }
 
 ###
@@ -44,8 +44,8 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "groupId": "621a2396621a9872bba76870",
-    "memberId": "621a2372621a9872bba7686b",
+    "groupId": "621bc1dd80bea7cf1485c29f",
+    "memberId": "621a7851e168959f1e0d52e9",
     "invitationCode": "123ABC"
 }
 

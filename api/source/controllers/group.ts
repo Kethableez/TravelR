@@ -6,6 +6,7 @@ import pipeline from '../functions/pipeline';
 import User from '../models/schemas/user';
 import Group from '../models/schemas/group';
 import { flatten, includes } from 'lodash';
+import getCode from '../functions/code-generator';
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -26,10 +27,10 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
                 const newGroup = new Group({
                     _id: id,
                     name: group.name,
-                    coverPhotoRef: [prefix, id].join('/'),
+                    coverPhotoRef: group.coverPhotoRef,
                     founder: new ObjectId(user._id),
                     members: [],
-                    invitationCode: '123ABC',
+                    invitationCode: getCode(),
                     journeys: []
                 });
                 newGroup
@@ -37,7 +38,7 @@ const createGroup = async (req: Request, res: Response, next: NextFunction) => {
                     .then((group) => {
                         return res.status(200).json({
                             message: 'Success',
-                            objectId: group._id
+                            object: group
                         });
                     })
                     .catch((error) => {

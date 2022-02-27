@@ -1,0 +1,5 @@
+<div *ngIf="userGroups">
+  <div *ngFor="let group of userGroups | async">
+    <app-group-card [group]="group"></app-group-card>
+  </div>
+</div>

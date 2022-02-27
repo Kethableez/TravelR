@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { NotificationService, Notification } from 'src/app/core/services/notification.service';
-
 
 enum NotificationState {
   OPEN = 'OPEN',
@@ -18,14 +16,14 @@ export class NotificationComponent implements OnInit {
   constructor(private notification: NotificationService) {}
 
   state = NotificationState.CLOSE;
-  message?: string;
+  message: string | null = null;
   isError?: boolean = false;
   showNotification: boolean = false;
-  private subscription!: Subscription;
 
   ngOnInit(): void {
-    this.subscription = this.notification.showMessageSubscription.subscribe(
+    this.notification.showMessageSubscription.subscribe(
       (showMessage: Notification) => {
+        console.log('xad');
         this.showNotification = showMessage.showNotification;
         this.message = showMessage.message;
         this.isError = showMessage.isError;

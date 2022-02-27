@@ -54,6 +54,7 @@ const groupPipeline: any[] = [
             'members.firstName': 1,
             'members.lastName': 1,
             'members.avatarRef': 1,
+            'journeys._id': 1,
             'journeys.name': 1,
             'journeys.description': 1,
             'journeys.coverPhotoRef': 1,

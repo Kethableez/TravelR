@@ -1,0 +1,11 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "auth": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWE3N2ZjZTE2ODk1OWYxZTBkNTJkZiIsImlhdCI6MTY0NTk4NjMxNSwiZXhwIjozMjkyMzMyNjMwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.iSb3p5iQ9BH_cS61GHkgU4VEAdZOwg6mZNx_dm994_A",
+            "contentType": "application/json"
+        },
+        "local": {
+            "baseUrl": "http://localhost:9000/api"
+        }
+    }
+}

@@ -5,9 +5,10 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "name": "Ogród botaniczny",
+    "name": "Wyspa słodowa",
     "address": {
-        "city": "Wrocław"
+        "city": "Wrocław",
+        "zipCode": "50-200"
     }
 }
 

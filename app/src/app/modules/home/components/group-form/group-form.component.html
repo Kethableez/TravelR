@@ -1,0 +1,8 @@
+<form [formGroup]="groupForm">
+  <input type="file" (change)="attachFile($event)">
+  <input type="text" formControlName="name">
+  <button (click)="submitForm()">Create group</button>
+</form>
+<pre>
+  {{ groupForm.value  | json }}
+</pre>

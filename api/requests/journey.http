@@ -15,16 +15,15 @@ content-type: {{contentType}}
 Authorization: {{auth}}
 
 {
-    "groupId": "621a2396621a9872bba76870",
+    "groupId": "621bc1dd80bea7cf1485c29f",
     "data": {
         "name": "Wycieczka po Wrocławiu",
         "description": "Spacerek po miejscach",
-        "startDate": "2022-02-28",
-        "endDate": "2022-02-28",
+        "startDate": "2022-03-03",
+        "endDate": "2022-03-03",
         "attractions": [
-            "621a2403621a9872bba76886",
-            "621a2441621a9872bba76889",
-            "621a2450621a9872bba7688c"
+            "621bc28c80bea7cf1485c2b0",
+            "621bc29880bea7cf1485c2b3"
         ]
     }
 }

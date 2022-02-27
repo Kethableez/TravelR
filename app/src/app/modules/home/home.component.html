@@ -1,1 +1,6 @@
-<p>home works!</p>
+<button (click)="logout()"> Logout </button>
+<button (click)="saveUser()">Get data</button>
+
+<app-group-form></app-group-form>
+
+<app-group-dashboard [userGroups]="userGroups$"></app-group-dashboard>

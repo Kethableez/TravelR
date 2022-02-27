@@ -17,3 +17,9 @@
     <app-register></app-register>
   </div>
 </div>
+
+<div *ngIf="state | async as s">
+  <pre>
+    {{ s | json }}
+  </pre>
+</div>

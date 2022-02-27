@@ -15,7 +15,7 @@
     },
     "rest-client.environmentVariables": {
         "$shared": {
-            "auth": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWEyMzZhNjIxYTk4NzJiYmE3Njg2NyIsImlhdCI6MTY0NTg4MzM5OCwiZXhwIjozMjkyMTI2Nzk2LCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.xloHj1vdHybcv3nvdmoxOlfc90uIfcixE-Ipkwy6u8A",
+            "auth": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWE2ZTVhZTE2ODk1OWYxZTBkNTJkNSIsImlhdCI6MTY0NTk4NjExNSwiZXhwIjozMjkyMzMyMjMwLCJpc3MiOiJ0cmF2ZWxyLWlzc3VlciJ9.mba_zT6P7aCDShH6ROZ2fkqPwCNU3r0KDEqrE_6guDc",
             "contentType": "application/json"
         },
         "local": {

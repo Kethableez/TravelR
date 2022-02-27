@@ -3,21 +3,25 @@ import { Subject } from 'rxjs';
 
 export interface Notification {
   showNotification: boolean;
-  message?: string;
+  message: string | null;
   isError?: boolean;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationService {
-
-  constructor() { }
+  constructor() {}
 
   showMessageSubscription = new Subject<Notification>();
 
-  dispatchNotification(showNotification: boolean, message?: string, isError?: boolean) {
-      const notification: Notification = { showNotification, message, isError };
-      this.showMessageSubscription.next(notification);
+  showNotification(
+    showNotification: boolean,
+    message: string | null,
+    isError?: boolean
+
+  ) {
+    const notification: Notification = { showNotification, message, isError };
+    this.showMessageSubscription.next(notification);
   }
 }
