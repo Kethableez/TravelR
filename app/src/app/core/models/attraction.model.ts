@@ -1,4 +1,6 @@
-export interface IAttraction {
+import { BaseId } from "./base-id.model";
+
+export interface Attraction extends BaseId {
   name: string;
   description?: string;
   address?: {

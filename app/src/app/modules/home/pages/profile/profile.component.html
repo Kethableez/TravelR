@@ -1,0 +1,15 @@
+<p>profile works!</p>
+<div *ngIf="isFormInited">
+  <form [formGroup]="editForm">
+    <input type="text" formControlName="firstName">
+    <input type="text" formControlName="lastName">
+    <input type="date" formControlName="birthdate">
+    <input type="text" formControlName="avatarRef">
+
+    <button (click)="change()">Check</button>
+  </form>
+<pre>
+
+  {{ editForm.value | json }}
+</pre>
+</div>

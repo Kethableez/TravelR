@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { tap } from 'rxjs';
 import { FileSelector } from 'src/app/core/models/enums/file-selector.model';
 import { FileService } from 'src/app/core/services/file.service';
-import { CreateGroup } from 'src/app/core/store/actions/group.actions';
 import { AppState } from 'src/app/core/store/app.states';
 
 @Component({
@@ -48,7 +47,6 @@ export class GroupFormComponent implements OnInit {
           coverPhotoRef: [this.selector, filename].join('/')
         })
         const data = this.groupForm.value;
-        this.store$.dispatch(new CreateGroup(data))
       })
     ).subscribe();
   }

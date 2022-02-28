@@ -3,7 +3,7 @@ import { OnInitEffects, createEffect, ofType, Actions } from "@ngrx/effects";
 import { Store, Action } from "@ngrx/store";
 import { distinctUntilChanged, map, switchMap, tap } from "rxjs";
 import { AppState } from "../app.states";
-import * as HydrationActions from '../actions/hydration.actions'
+import * as HydrationActions from './hydration.actions'
 
 @Injectable()
 export class HydrationEffects implements OnInitEffects {

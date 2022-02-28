@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Register } from 'src/app/core/store/actions/auth.actions';
 import { AppState } from 'src/app/core/store/app.states';
+import { AuthActions } from '../../store/auth';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   uploadForm() {
     const payload = this.registerForm.value;
 
-    this.store$.dispatch( new Register( payload ))
+    this.store$.dispatch(AuthActions.register({registerPayload: payload}))
   }
 
 }

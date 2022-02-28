@@ -7,6 +7,8 @@ import { GroupFormComponent } from './components/group-form/group-form.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { GroupDashboardComponent } from './components/group-dashboard/group-dashboard.component';
 import { GroupCardComponent } from './components/group-card/group-card.component';
+import { UserStateModule } from './store/user';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
@@ -14,12 +16,14 @@ import { GroupCardComponent } from './components/group-card/group-card.component
     HomeComponent,
     GroupFormComponent,
     GroupDashboardComponent,
-    GroupCardComponent
+    GroupCardComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserStateModule
   ]
 })
 export class HomeModule { }

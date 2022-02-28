@@ -18,8 +18,14 @@ export class UserService {
   getUserData(userId: string): Observable<User> {
     const url = this.settings.getUserUrl('getUserById', { userId: userId });
 
-    return this.http.get<IUser>(url).pipe(
-      map(user => new User(user))
-    );
+    return this.http.get<User>(url);
+  }
+
+  editUserData(userId: string, editForm: any): Observable<User> {
+    const url = this.settings.getUserUrl('edit', { userId: userId });
+
+    return this.http.post<any>(url, editForm).pipe(
+      map((response) => response.object)
+    )
   }
 }

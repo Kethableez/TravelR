@@ -1,39 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { GroupService } from 'src/app/core/services/group.service';
-import { Logout } from 'src/app/core/store/actions/auth.actions';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { User } from 'src/app/core/models/user.model';
 import { AppState } from 'src/app/core/store/app.states';
-import { AuthState } from 'src/app/core/store/reducers/auth.reducers';
-import { GroupState } from 'src/app/core/store/reducers/group.reducers';
-import { UserState } from 'src/app/core/store/reducers/user.reducers';
-import { userGroups } from 'src/app/core/store/selectors/group.selectors';
+import { AuthActions, selectUserId } from '../start/store/auth';
+import { NavigationService } from './services/navigation.service';
+import { UserActions } from './store/user';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   constructor(
     private store$: Store<AppState>,
-    private groupService: GroupService
-  ) {
-    this.authState = this.store$.select('authState');
-    this.userState = this.store$.select('userState');
-    this.groupState = this.store$.select('groupState');
+    private navigation: NavigationService,
+    ) {}
+
+  ngOnInit(): void {
+
   }
-
-  authState: Observable<AuthState>;
-  userState: Observable<UserState>;
-  groupState: Observable<GroupState>;
-
-  userGroups$ = this.store$.select(userGroups);
-
-  ngOnInit(): void {}
 
   logout() {
-    this.store$.dispatch(new Logout());
+    this.store$.dispatch(AuthActions.logout());
   }
 
-  saveUser() {}
+  navigate(url: string) {
+    this.navigation.navigateToUrl(url);
+  }
 }

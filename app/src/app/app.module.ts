@@ -9,13 +9,12 @@ import { AppComponent } from './app.component';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './core/store/effects/auth.effects';
-import { metaReducers, reducers } from './core/store/app.states';
-import { UserEffects } from './core/store/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { HydrationEffects } from './core/store/effects/hydration.effects';
-import { GroupEffects } from './core/store/effects/group.effects';
+import { HydrationEffects } from './core/store/hydration/hydration.effects';
+import { AuthStateModule } from './modules/start/store/auth/auth-state.module';
+import { UserStateModule } from './modules/home/store/user/user-state.module';
+import { metaReducers } from './core/store/app.states';
 
 @NgModule({
   declarations: [
@@ -27,9 +26,11 @@ import { GroupEffects } from './core/store/effects/group.effects';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AuthEffects, UserEffects, HydrationEffects, GroupEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot([HydrationEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    AuthStateModule,
+    UserStateModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

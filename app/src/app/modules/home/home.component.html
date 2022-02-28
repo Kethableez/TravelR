@@ -1,6 +1,12 @@
+<button routerLink="dashboard">Dashboard</button>
+<button routerLink="groups">Groups</button>
+<button routerLink="journeys">Journeys</button>
+<button routerLink="attractions">Attractions</button>
+<button routerLink="profile">Profile</button>
 <button (click)="logout()"> Logout </button>
-<button (click)="saveUser()">Get data</button>
+<div class="page">
+  <router-outlet></router-outlet>
+</div>
+<!-- <app-group-form></app-group-form>
 
-<app-group-form></app-group-form>
-
-<app-group-dashboard [userGroups]="userGroups$"></app-group-dashboard>
+<app-group-dashboard [userGroups]="userGroups$"></app-group-dashboard> -->

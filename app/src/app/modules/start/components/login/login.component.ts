@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Login } from 'src/app/core/store/actions/auth.actions';
 import { AppState } from 'src/app/core/store/app.states';
+import { AuthActions } from '../../store/auth';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   login() {
     const payload = this.loginForm.value;
 
-    this.store$.dispatch(new Login(payload));
+    this.store$.dispatch(AuthActions.login({ loginPayload: payload }));
   }
 
 }
