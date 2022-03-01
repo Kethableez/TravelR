@@ -12,7 +12,7 @@ router.get('/check/:selector/:value', controller.check);
 
 router.post('/login', controller.login);
 router.post('/register', controller.createUser);
-router.post('/edit/:userId', validateRequest.userData, validateJWT, controller.editUser);
+router.post('/edit/:userId', validateJWT, validateRequest.userData, controller.editUser);
 router.post(
     '/delete/:userId',
     validateJWT,

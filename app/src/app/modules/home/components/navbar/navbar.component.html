@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="app-info">
+    <div class="app-title"> TravelR </div>
+  </div>
+  <div class="buttons" *ngFor="let data of navigationData">
+    <app-navbar-button
+    [buttonKey]="data.buttonKey"
+    [navigationUrl]="data.navigationUrl"
+    [isLogout]="data.isLogout"></app-navbar-button>
+    <!-- <div class="button" (click)="navigate('dashboard')">Dashboard</div>
+    <div class="button" (click)="navigate('group')">Groups</div>
+    <div class="button" (click)="navigate('journey')">Journeys</div>
+    <div class="button" (click)="navigate('attraction')">Attractions</div>
+    <div class="button" (click)="navigate('profile')">Profile</div>
+    <div class="button" (click)="logout()">Logout</div> -->
+  </div>
+</div>

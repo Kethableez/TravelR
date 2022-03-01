@@ -1,0 +1,16 @@
+.button {
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  margin: 0 1rem;
+  min-width: 7rem;
+  border-bottom: 3px solid #3C153B;
+  transition: .1s ease-in-out;
+}
+.button:hover {
+  border-bottom: 3px solid #F0C987;
+}
+
+.active {
+  border-bottom: 3px solid #F0C987;
+}

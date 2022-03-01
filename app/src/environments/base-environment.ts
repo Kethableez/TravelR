@@ -61,7 +61,47 @@ const urls: any = {
   }
 }
 
+interface NavbarButton {
+  buttonKey: string;
+  navigationUrl: string;
+  isLogout: boolean;
+}
+
+const navigationData: NavbarButton[] = [
+  {
+    buttonKey: 'Dashboard',
+    navigationUrl: 'dashboard',
+    isLogout: false
+  },
+  {
+    buttonKey: 'Groups',
+    navigationUrl: 'group',
+    isLogout: false
+  },
+  {
+    buttonKey: 'Jaourneys',
+    navigationUrl: 'journey',
+    isLogout: false
+  },
+  {
+    buttonKey: 'Attractions',
+    navigationUrl: 'attraction',
+    isLogout: false
+  },
+  {
+    buttonKey: 'Profile',
+    navigationUrl: 'profile',
+    isLogout: false
+  },
+  {
+    buttonKey: 'Logout',
+    navigationUrl: '',
+    isLogout: true
+  },
+]
+
 export const baseEnvironment = {
+  navigationData,
   apiUrl,
   urls
 }

@@ -15,6 +15,11 @@ export const editUser = createAction(
   props<{ data: any }>()
 )
 
+export const editUserSuccess = createAction(
+  '[User] Edit user success',
+  props<{ changedUser: any}>()
+)
+
 export const clearData = createAction(
   '[User] Clear data'
 )

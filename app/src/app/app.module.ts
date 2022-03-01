@@ -15,11 +15,13 @@ import { HydrationEffects } from './core/store/hydration/hydration.effects';
 import { AuthStateModule } from './modules/start/store/auth/auth-state.module';
 import { UserStateModule } from './modules/home/store/user/user-state.module';
 import { metaReducers } from './core/store/app.states';
+import { AbstractCleanable } from './core/abstract-cleanable.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotificationComponent
+    NotificationComponent,
+    AbstractCleanable,
   ],
   imports: [
     BrowserModule,

@@ -70,7 +70,7 @@ export class AuthEffects {
       ofType(loginSuccess),
       tap((action) => {
         localStorage.setItem('token', action.token);
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home/dashboard');
       }),
       withLatestFrom(this.store$.select(selectIsLoggedIn)),
       // concatMap(action =>

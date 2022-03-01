@@ -16,12 +16,18 @@ export class SettingService {
 
   private readonly baseEnv = baseEnvironment;
 
+
+
   private get urls(): any {
     return this.baseEnv.urls;
   }
 
   private get baseUrl(): string {
     return this.baseEnv.apiUrl;
+  }
+
+  getNavigationData() {
+    return this.baseEnv.navigationData;
   }
 
   getUserUrl(action: string, parameters?: any): string {
